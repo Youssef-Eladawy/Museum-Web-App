@@ -1,0 +1,124 @@
+.headSection {
+    background-image: url("images/ChatGPT\ Image\ Nov\ 8\,\ 2025\,\ 03_31_10\ PM.png");
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    padding: 6rem 0 4rem;
+    h1 {
+        font-size: 3.5rem;
+        z-index: 5;
+        position: relative;
+    }
+    .route {
+        font-size: 1.1rem;
+        z-index: 5;
+        position: relative;
+        .link{
+            color: #e6a770 !important;
+        }
+    }
+}
+.headSection::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: color-mix(in srgb, var(--main-color) 50%, transparent);
+}
+/* ======== */
+.contact{
+    background-color: var(--secondery-color);
+    > .title .title-title{
+        color: var(--main-color);
+        position: relative;
+    }
+    > .title .title-title::after{
+        content: "";
+        position: absolute;
+        top : 50%;
+        left : -4rem;
+        transform: translateY(-50%);
+        height: 2px;
+        width: 3rem;
+        background-color: var(--main-color);
+    }
+    > .title .title-title::before{
+        content: "";
+        position: absolute;
+        top : 50%;
+        right : -4rem;
+        transform: translateY(-50%);
+        height: 2px;
+        width: 3rem;
+        background-color: var(--main-color);
+    }
+    .contact-contact .icon i{
+        color: var(--main-color);
+        font-size: 3.5rem;
+    }
+    .contact-contact .right{
+        .field{
+            width: fit-content;
+            position: relative;
+            label{
+                position: absolute;
+                top: 50%;
+                left: 1rem;
+                transform: translateY(-50%);
+                transition: 0.1s;
+            }
+            textarea + label{
+                top: 15%;
+            }
+            input:not(:placeholder-shown) + label,textarea:not(:placeholder-shown) + label,input:focus + label ,textarea:focus + label{
+                top: 1rem;
+                font-size: .8rem;
+                color:#a7acb1;
+            }
+            input,textarea{
+                outline: none !important;
+                border: none !important;
+                transition-duration: 0.1s;
+                resize: none;
+            }
+            input:focus,textarea:focus{
+                box-shadow: 0 0 0 .25rem rgba(19, 53, 123, .25);
+            }
+        }
+        .fourthRow{
+            button{
+                outline: none !important;
+                color: white;
+                background-color: var(--main-color) !important;
+                border: 1px solid var(--main-color) !important;
+                position: relative;
+                z-index: 2;
+                overflow: hidden;
+                transition-duration: 0.5s;
+            }
+            button::after{
+                content: "";
+                position: absolute;
+                top: 0rem;
+                right: 0rem;
+                width: 100%;
+                height: 100%;
+                background-color: var(--main-color);
+                z-index: -1;
+                border-radius: 0.5rem;
+                transition: 0.3s;
+            }
+            button:hover::after{
+                width: 0;
+            }
+            button:hover{
+                color: var(--main-color);
+                background-color: transparent !important;
+            }
+        }
+
+    }
+}
