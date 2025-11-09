@@ -1,27 +1,13 @@
-import { Link } from "react-router-dom";
 import "./contact.css";
+import HeadSection from "../shared/headSection/HeadSection";
+import SectionTitle from "../shared/sectionTitle/SectionTitle";
 
 function Contact() {
     return (
         <>
-            <div className="headSection text-light d-flex justify-content-center">
-                <div className="text text-center pt-5 pb-3">
-                    <h1 className="pt-5">Contact Us</h1>
-                    <div className="route">
-                        <Link to="/" className="link text-decoration-none">
-                            Home
-                        </Link>{" "}
-                        / Contact
-                    </div>
-                </div>
-            </div>
+            <HeadSection path={"contact"} />
             <div className="contact py-5">
-                <div className="title py-5 d-flex align-items-center justify-content-center flex-column">
-                    <div className="title-title fs-4 fw-bold">Contact Us</div>
-                    <div className="word fs-1 fw-bold">
-                        Contact For Any Query
-                    </div>
-                </div>
+                <SectionTitle title={"Contact Us"} sentence={"Contact For Any Query"} />
                 <div className="contact-contact">
                     <div className="container px-4">
                         <div className="row gap-5 justify-content-center">
