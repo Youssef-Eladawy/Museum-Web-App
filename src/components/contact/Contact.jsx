@@ -5,7 +5,7 @@ import SectionTitle from "../shared/sectionTitle/SectionTitle";
 function Contact() {
     return (
         <>
-            <HeadSection path={"contact"} />
+            <HeadSection path={"contact"} title={"Contact Us"} />
             <div className="contact py-5">
                 <SectionTitle title={"Contact Us"} sentence={"Contact For Any Query"} />
                 <div className="contact-contact">
