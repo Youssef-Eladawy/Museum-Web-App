@@ -37,16 +37,27 @@ function show(e) {
     }
 }
 
-function wImgDesc(){
-    let imageDescs = document.querySelectorAll(`.imgDesc`);
+// function wImgDesc() {
+//     let imageDescs = document.querySelectorAll(`.imgDesc`);
 
-    for(let imageDesc of imageDescs){
-        imageDesc.innerText = imageDesc.dataset.city;
-    }
-}
-wImgDesc();
+//     for (let imageDesc of imageDescs) {
+//         imageDesc.innerText = imageDesc.dataset.city;
+//     }
+// }
+// wImgDesc();
 
 function Destination() {
+    let images = [
+        { src: Canada, city: "Toronto", country:"canada" },
+        { src: Egypt1, city: "Aswan", country: "egypt" },
+        { src: Egypt2, city: "Islamic Cairo", country: "egypt" },
+        { src: China, city: "Great wall of China", country: "china" },
+        { src: China2, city: "Shanghai", country: "china" },
+        { src: Europe, city: "Paris", country: "europe" },
+        { src: Europe2, city: "London", country: "europe" },
+        { src: Singapore, city: "Marina Bay", country: "singapore" },
+    ];
+
     return (
         <>
             <HeadSection title={"Travel Destination"} path={"Destination"} />
@@ -95,135 +106,26 @@ function Destination() {
                         </button>
                     </div>
                     <div className="photos row my-4 justify-content-center align-items-center">
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="canada">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
+                        {images.map((img,index) => (
+                            <div
+                                className="image pb-4 col-md-6 col-lg-4"
+                                data-country={img.country}
+                                key={index}>
+                                <div className="img-cont">
+                                    <div className="seePhoto position-absolute p-3 rounded-pill">
+                                        <i className="bi position-relative bi-plus-square"></i>
+                                    </div>
+                                    <div
+                                        className="imgDesc position-absolute text-light fw-bold"
+                                        data-city={img.city}>{img.city}</div>
+                                    <img
+                                        src={img.src}
+                                        alt={img.country.toUpperCase()}
+                                        className="w-100"
+                                    />
                                 </div>
-                                <div
-                                    className="imgDesc position-absolute text-light fw-bold"
-                                    data-city="Toronto"></div>
-                                <img
-                                    src={Canada}
-                                    alt="Canada"
-                                    className="w-100"
-                                />
                             </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="egypt">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="Aswan"></div>
-                                <img
-                                    src={Egypt1}
-                                    alt="Egypt"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="egypt">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="Islamic Cairo"></div>
-                                <img
-                                    src={Egypt2}
-                                    alt="Egypt"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="china">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="Great wall of China"></div>
-                                <img
-                                    src={China}
-                                    alt="China"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="china">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="Shanghai"></div>
-                                <img
-                                    src={China2}
-                                    alt="China"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="europe">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="Paris"></div>
-                                <img
-                                    src={Europe}
-                                    alt="Europe"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="europe">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="London"></div>
-                                <img
-                                    src={Europe2}
-                                    alt="Europe"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="image pb-4 col-md-6 col-lg-4"
-                            data-country="singapore">
-                            <div className="img-cont">
-                                <div className="seePhoto position-absolute p-3 rounded-pill">
-                                    <i className="bi position-relative bi-plus-square"></i>
-                                </div>
-                                <div className="imgDesc position-absolute text-light fw-bold"
-                                data-city="Marina Bay"></div>
-                                <img
-                                    src={Singapore}
-                                    alt="Singapore"
-                                    className="w-100"
-                                />
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
