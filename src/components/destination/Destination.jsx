@@ -70,7 +70,7 @@ function Destination() {
                         editClasses={".photos .image"}
                         tagsDataSet={"country"}
                     />
-                    <div className="photos row my-4 justify-content-center align-items-center">
+                    <div className="photos row mb-4 justify-content-center align-items-center">
                         {images.map((img, index) => (
                             <div
                                 className="image pb-4 col-md-6 col-lg-4"

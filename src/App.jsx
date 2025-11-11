@@ -4,12 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import "@popperjs/core/dist/umd/popper.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";   
-import Destination from "./components/destination/Destination";
+// import Destination from "./components/destination/Destination";
+import Gallery from "./components/gallery/Gallery";
 
 function App(){
 	return(
 		<>
-			<Destination />
+			<Gallery/>
+			{/* <Destination/> */}
 		</>
 	)
 }
