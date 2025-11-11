@@ -37,9 +37,34 @@ function show(e) {
     }
 }
 
+function removeCard() {
+    let card = document.querySelector(`.bgCard`);
+    card.remove();
+}
+
+function card(e) {
+    let src = e.target.dataset.imgsrc;
+
+    let bg = document.createElement(`div`);
+    bg.className = `bgCard position-fixed`;
+    bg.addEventListener(`click`, removeCard);
+
+    let cardDiv = document.createElement(`div`);
+    cardDiv.className = `imgCard p-2 bg-light`;
+
+    let img = document.createElement(`img`);
+    img.src = src;
+    img.alt = "image";
+
+    cardDiv.append(img);
+    bg.append(cardDiv);
+
+    document.body.append(bg);
+}
+
 function Destination() {
     let images = [
-        { src: Canada, city: "Toronto", country:"canada" },
+        { src: Canada, city: "Toronto", country: "canada" },
         { src: Egypt1, city: "Aswan", country: "egypt" },
         { src: Egypt2, city: "Islamic Cairo", country: "egypt" },
         { src: China, city: "Great wall of China", country: "china" },
@@ -97,18 +122,25 @@ function Destination() {
                         </button>
                     </div>
                     <div className="photos row my-4 justify-content-center align-items-center">
-                        {images.map((img,index) => (
+                        {images.map((img, index) => (
                             <div
                                 className="image pb-4 col-md-6 col-lg-4"
                                 data-country={img.country}
                                 key={index}>
                                 <div className="img-cont">
-                                    <div className="seePhoto position-absolute p-3 rounded-pill">
-                                        <i className="bi position-relative bi-plus-square"></i>
+                                    <div
+                                        className="seePhoto position-absolute p-3 rounded-pill"
+                                        data-imgsrc={img.src}
+                                        onClick={card}>
+                                        <i
+                                            className="bi position-relative bi-plus-square"
+                                            data-imgsrc={img.src}></i>
                                     </div>
                                     <div
                                         className="imgDesc position-absolute text-light fw-bold"
-                                        data-city={img.city}>{img.city}</div>
+                                        data-city={img.city}>
+                                        {img.city}
+                                    </div>
                                     <img
                                         src={img.src}
                                         alt={img.country.toUpperCase()}
