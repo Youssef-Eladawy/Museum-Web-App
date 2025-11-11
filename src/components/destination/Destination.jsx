@@ -37,15 +37,6 @@ function show(e) {
     }
 }
 
-// function wImgDesc() {
-//     let imageDescs = document.querySelectorAll(`.imgDesc`);
-
-//     for (let imageDesc of imageDescs) {
-//         imageDesc.innerText = imageDesc.dataset.city;
-//     }
-// }
-// wImgDesc();
-
 function Destination() {
     let images = [
         { src: Canada, city: "Toronto", country:"canada" },
