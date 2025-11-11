@@ -29,7 +29,7 @@ function ButtonsBelt({ buttons, editClasses,tagsDataSet }) {
 
     return (
         <>
-            <div className="belt d-flex justify-content-evenly flex-wrap gap-4">
+            <div className="belt d-flex justify-content-evenly flex-wrap gap-4 mb-4">
                 {buttons.map((button, index) => (
                     <button
                         key={index}
