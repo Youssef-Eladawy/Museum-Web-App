@@ -68,7 +68,7 @@ function Gallery() {
                         { content: "Summer Tour", attr: "summerTour" },
                         { content: "Sport Tour", attr: "sportTour" },
                     ]}
-                    editClasses={".photos .image"}
+                    editClasses={".Gallery-photos .image"}
                     tagsDataSet={"type"}
                 />
                 <div className="Gallery-photos row pb-5 justify-content-center align-items-center mx-2">
