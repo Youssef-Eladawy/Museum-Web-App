@@ -1,7 +1,6 @@
-import HeadSection from "../shared/headSection/HeadSection";
+import "./Destination.css";
 import SectionTitle from "../shared/sectionTitle/SectionTitle";
 import ButtonsBelt from "../shared/buttonsBelt/ButtosBelt";
-import "./Destination.css";
 // Photos
 import Canada from "./images/Canada2.jpg";
 import Egypt1 from "./images/Egypt1.jpg";
@@ -37,7 +36,8 @@ function card(e) {
     document.body.append(bg);
 }
 
-function Destination() {
+
+function DestinationSection() {
     let images = [
         { src: Canada, city: "Toronto", country: "canada" },
         { src: Egypt1, city: "Aswan", country: "egypt" },
@@ -48,10 +48,8 @@ function Destination() {
         { src: Europe2, city: "London", country: "europe" },
         { src: Singapore, city: "Marina Bay", country: "singapore" },
     ];
-
     return (
         <>
-            <HeadSection title={"Travel Destination"} path={"Destination"} />
             <div className="body">
                 <SectionTitle
                     title={"Destination"}
@@ -105,4 +103,4 @@ function Destination() {
     );
 }
 
-export default Destination;
+export default DestinationSection;

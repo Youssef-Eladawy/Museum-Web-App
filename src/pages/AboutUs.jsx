@@ -1,17 +1,18 @@
 
 import TravelGuide from "../components/TravelGuide";
-import aboutImg from "../assets/aboutImg.jpg";
+// import aboutImg from "../assets/aboutImg.jpg";
 import "../styles/componentsStyles.css";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import HeadSection from "../components/shared/headSection/HeadSection";
+import AboutUsDesc from "../components/AboutUseDesc";
 
 function AboutUs() {
     const headerName = "About Us";
     return ( 
         <>
             <HeadSection path={"about"} title={"About Us"} />
-            <section className="AboutUsDescSection container my-5">
+            {/* <section className="AboutUsDescSection container my-5">
                 <div className="row row-gap-4">
                     <div className="col-lg-5">
                         <img src={aboutImg} alt="" className="w-100 img-fluid" />
@@ -34,7 +35,9 @@ function AboutUs() {
                     </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
+            {/* Make the about more simple and remove the headSection from the <AboutUsDesc> */}
+            <AboutUsDesc />
             
             <TravelGuide />
         </>

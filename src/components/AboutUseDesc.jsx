@@ -1,4 +1,4 @@
-import aboutImg from "../assets/about-img.jpg";
+import aboutImg from "../assets/aboutImg.jpg";
 import "../styles/componentsStyles.css";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -6,7 +6,8 @@ import HeadSection from "./shared/headSection/HeadSection";
 function AboutUsDesc() {
     return ( 
         <>
-            <HeadSection path={"about"} title={"About Us"} />
+            {/* Remove the headSection to can call the section in Home Page */}
+            {/* <HeadSection path={"about"} title={"About Us"} /> */}
             <section className="AboutUsDescSection container my-5">
                 <div className="row row-gap-4">
                     <div className="col-lg-5">

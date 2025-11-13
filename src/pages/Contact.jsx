@@ -1,6 +1,6 @@
-import "./contact.css";
-import HeadSection from "../shared/headSection/HeadSection";
-import SectionTitle from "../shared/sectionTitle/SectionTitle";
+import "../components/contact/contact.css";
+import HeadSection from "../components/shared/headSection/HeadSection";
+import SectionTitle from "../components/shared/sectionTitle/SectionTitle";
 
 function Contact() {
     return (
