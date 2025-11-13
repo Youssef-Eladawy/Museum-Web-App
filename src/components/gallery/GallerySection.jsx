@@ -1,4 +1,3 @@
-import HeadSection from "../shared/headSection/HeadSection";
 import SectionTitle from "../shared/sectionTitle/SectionTitle";
 import ButtonsBelt from "../shared/buttonsBelt/ButtosBelt";
 import "./Gallery.css";
@@ -37,21 +36,19 @@ function card(e) {
     document.body.append(bg);
 }
 
-function Gallery() {
+function GallerySection() {
     const images = [
-        { src: world1, type: "worldTour" , content: "World Tour"},
-        { src: world2, type: "worldTour" , content: "World Tour"},
-        { src: summer1, type: "summerTour" , content: "Summer Tour"},
-        { src: summer2, type: "summerTour" , content: "Summer Tour"},
-        { src: ocean1, type: "oceanTour" , content: "Ocean Tour"},
-        { src: ocean2, type: "oceanTour" , content: "Ocean Tour"},
-        { src: sport1, type: "sportTour" , content: "Sport Tour"},
-        { src: sport2, type: "sportTour" , content: "Sport Tour"},
+        { src: world1, type: "worldTour", content: "World Tour" },
+        { src: world2, type: "worldTour", content: "World Tour" },
+        { src: summer1, type: "summerTour", content: "Summer Tour" },
+        { src: summer2, type: "summerTour", content: "Summer Tour" },
+        { src: ocean1, type: "oceanTour", content: "Ocean Tour" },
+        { src: ocean2, type: "oceanTour", content: "Ocean Tour" },
+        { src: sport1, type: "sportTour", content: "Sport Tour" },
+        { src: sport2, type: "sportTour", content: "Sport Tour" },
     ];
-
     return (
         <>
-            <HeadSection title={"Our Gallery"} path={"gallery"} />
             <div className="body">
                 <SectionTitle
                     title={"Our Gallery"}
@@ -73,36 +70,36 @@ function Gallery() {
                 />
                 <div className="Gallery-photos row pb-5 justify-content-center align-items-center mx-2">
                     {images.map((img, index) => (
-                            <div
-                                className="image pb-2 col-md-6 col-lg-3"
-                                data-type={img.type}
-                                key={index}>
-                                <div className="img-cont">
-                                    <div
-                                        className="seePhoto position-absolute"
-                                        data-imgsrc={img.src}
-                                        onClick={card}>
-                                        <i
-                                            className="bi bi-plus"
-                                            data-imgsrc={img.src}></i>
-                                    </div>
-                                    <div
-                                        className="imgDesc position-absolute text-light fw-bold"
-                                        data-type={img.type}>
-                                        {img.content}
-                                    </div>
-                                    <img
-                                        src={img.src}
-                                        alt={img.type.toUpperCase()}
-                                        className="w-100"
-                                    />
+                        <div
+                            className="image pb-2 col-md-6 col-lg-3"
+                            data-type={img.type}
+                            key={index}>
+                            <div className="img-cont">
+                                <div
+                                    className="seePhoto position-absolute"
+                                    data-imgsrc={img.src}
+                                    onClick={card}>
+                                    <i
+                                        className="bi bi-plus"
+                                        data-imgsrc={img.src}></i>
                                 </div>
+                                <div
+                                    className="imgDesc position-absolute text-light fw-bold"
+                                    data-type={img.type}>
+                                    {img.content}
+                                </div>
+                                <img
+                                    src={img.src}
+                                    alt={img.type.toUpperCase()}
+                                    className="w-100"
+                                />
                             </div>
-                        ))}
+                        </div>
+                    ))}
                 </div>
             </div>
         </>
     );
 }
 
-export default Gallery;
+export default GallerySection;

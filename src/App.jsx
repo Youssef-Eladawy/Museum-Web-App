@@ -4,18 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import "@popperjs/core/dist/umd/popper.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";   
-import Contact from "./components/contact/Contact";
-import Destination from "./components/destination/Destination";
+
 import Testimonial from "./pages/Testimonial";
 import AboutUs from "./pages/AboutUs";
 import OurServices from "./pages/OurServices";
 import Guides from "./pages/Guides";
-import Gallery from "./components/gallery/Gallery";
+import Gallery from "./pages/Gallery";
+import Destination from "./pages/Destination";
+import Contact from "./pages/Contact";
+import Home from "./pages/Home"
 
 function App(){
 	return(
 		<>
 			<Routes >
+				<Route path="/" element={<Home/>} />
 				<Route path="/contact" element={<Contact/>} />
 				<Route path="/destination" element={<Destination />} />
 				<Route path="/testimonial" element={<Testimonial />} />
