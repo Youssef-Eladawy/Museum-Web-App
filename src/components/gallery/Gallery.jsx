@@ -71,7 +71,7 @@ function Gallery() {
                     editClasses={".photos .image"}
                     tagsDataSet={"type"}
                 />
-                <div className="photos row pb-5 justify-content-center align-items-center mx-2">
+                <div className="Gallery-photos row pb-5 justify-content-center align-items-center mx-2">
                     {images.map((img, index) => (
                             <div
                                 className="image pb-2 col-md-6 col-lg-3"

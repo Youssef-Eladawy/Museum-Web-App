@@ -3,7 +3,7 @@
     padding-right:0.5rem !important;
 }
 
-.photos {
+.Gallery-photos {
     img{
         height: auto;
         object-fit: cover;
