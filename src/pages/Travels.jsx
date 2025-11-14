@@ -1,5 +1,5 @@
-import HeadSection from "../shared/headSection/HeadSection";
-import TravelSection from "./TravelSection";
+import HeadSection from "../components/shared/headSection/HeadSection";
+import TravelSection from "../components/typeOfTravels/TravelSection";
 
 function Travels(){
     return(

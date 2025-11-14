@@ -5,6 +5,7 @@ import TravelGuide from "../components/TravelGuide";
 import GallerySection from "../components/gallery/GallerySection";
 import React from "react";
 import HomeHero from "../components/Hero";
+import TravelSection from "../components/typeOfTravels/TravelSection";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       <AboutUsDesc />
       <OurServices />
       <DestinationSection />
+      <TravelSection />
       <TravelGuide />
       <GallerySection />
     </>

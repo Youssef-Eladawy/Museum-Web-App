@@ -17,6 +17,7 @@ import Subscription from "./components/Subscription";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageNotFound from "./pages/404Page";
+import Travels from "./pages/Travels";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/travels" element={<Travels />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<Destination />} />
         <Route path="/testimonial" element={<Testimonial />} />
