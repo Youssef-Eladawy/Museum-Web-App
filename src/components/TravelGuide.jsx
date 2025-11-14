@@ -5,17 +5,15 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaLinkedinIn } from "react-icons/fa6";
 import guide1 from "../assets/guide-1.jpg";
 import "../styles/componentsStyles.css";
+import SectionTitle from "./shared/sectionTitle/SectionTitle";
 
 function TravelGuide() {
     return ( 
     <>
         <section className="travelGuideSection w-100 d-flex flex-column justify-content-center align-items-center  px-5 container my-5">
-            <div className="d-flex gap-3 mb-1">
-                <div className="line"></div>
-                <h5 className="m-0 position-relative text-uppercase">Tour Guide</h5>
-                <div className="line"></div>
-            </div>
-            <h1 className="mb-5">Meet Our Guide</h1>
+            <SectionTitle title={"TOUR GUIDE"} sentence={"Meet Our Guide"} />
+
+            
             <div className="row w-100 row-gap-5">
                     <div className="guider col-lg-3 col-md-6 overflow-hidden px-3 my-0" >
                         <div className="d-flex flex-column border rounded-3  overflow-hidden">
