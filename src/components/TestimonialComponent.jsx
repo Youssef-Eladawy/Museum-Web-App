@@ -3,6 +3,7 @@ import { FaStar, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/componentsStyles.css";
+import SectionTitle from "./shared/sectionTitle/SectionTitle";
 
 function SampleNextArrow({ onClick }) {
   return (
@@ -84,8 +85,7 @@ function TestimonialSlider() {
 
   return (
     <div className="testimonial-section py-5 container text-center my-5 position-relative">
-      <h6 className="text-primary fw-bold text-uppercase">Testimonial</h6>
-      <h2 className="fw-bold mb-4">Our Clients Say!!!</h2>
+      <SectionTitle title={"TESTIMONIAL"} sentence={"Our Clients Say!!!"} />
 
       <Slider {...settings}>
         {testimonials.map((t) => (

@@ -14,7 +14,7 @@ function AboutUsDesc() {
                         <img src={aboutImg} alt="" className="w-100 img-fluid" />
                     </div>
                     <div className="col-lg-7  ">
-                    <div className="w-100 h-100 d-flex flex-column justify-content-center gap-1 ms-4">
+                    <div className="w-100 h-100 d-flex flex-column justify-content-center gap-1 px-4">
                         <h5 className="text-uppercase mb-2 position-relative">About Us</h5>
                         <h1>Welcome to Museum</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorum, doloribus sunt dicta, officia voluptatibus libero necessitatibus natus impedit quam ullam assumenda? Id atque iste consectetur. Commodi odit ab saepe!</p>

@@ -196,7 +196,7 @@
   color: #0a2e72;
   opacity: 1;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .arrow-btn {
     display: none !important;
   }
