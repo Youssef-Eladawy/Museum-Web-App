@@ -32,7 +32,7 @@ function ServicesComponent() {
                             </div>
                             <FaUserAlt  className="icon text-secondary" />
                         </div>
-                        <div className="d-flex border rounded-3 p-4 gap-4 ">
+                        <div className="serviceBox d-flex border rounded-3 p-4 gap-4 ">
                             <div className="d-flex flex-column justify-content-around">
                                 <h5 className="text-end">WorldWide Tours</h5>
                                 <p className="text-end text-secondary">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.</p>
