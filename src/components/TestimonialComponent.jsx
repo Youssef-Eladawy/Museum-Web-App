@@ -85,7 +85,7 @@ function TestimonialSlider() {
 
   return (
     <div className="testimonial-section py-5 container text-center my-5 position-relative">
-      <SectionTitle title={"Testimonials"} sentence={"What Our Clients Say"} />
+      <SectionTitle title={"TESTIMONIAL"} sentence={"Our Clients Say!!!"} />
 
       <Slider {...settings}>
         {testimonials.map((t) => (
@@ -97,7 +97,11 @@ function TestimonialSlider() {
             <h5 className="">{t.name}</h5>
             <p className="text-muted mb-0">{t.location}</p>
             <div className="stars text-primary fs-5">
-              <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
             </div>
           </div>
         ))}

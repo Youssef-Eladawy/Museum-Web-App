@@ -8,8 +8,8 @@ function ServicesComponent() {
     return ( 
         <section className="OurServicesSection container">
             <div className="w-100 d-flex flex-column justify-content-center align-items-center my-5">
-                <SectionTitle title={"Services"} sentence={"Our Services"} />
-                <div className="row w-100">
+                <SectionTitle title={"SERVICES"} sentence={"Our Services"} />
+                <div className="row w-100 row-gap-4">
                     <div className="col-lg-6 d-flex flex-column row-gap-4">
                         <div className="serviceBox d-flex border rounded-3 p-4 gap-4 ">
                             <div className="d-flex flex-column justify-content-around">
