@@ -13,11 +13,13 @@ import Gallery from "./pages/Gallery";
 import Destination from "./pages/Destination";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home"
+import Travels from "./components/typeOfTravels/Travels"
 
 function App(){
 	return(
 		<>
 			<Routes >
+				<Route path="/travels" element={<Travels />} />
 				<Route path="/" element={<Home/>} />
 				<Route path="/contact" element={<Contact/>} />
 				<Route path="/destination" element={<Destination />} />
