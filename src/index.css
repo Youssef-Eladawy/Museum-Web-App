@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #13357b;
+  --color-light: #f2f2f2;
+  --color-grey: #757575;
+}
+
+html {
+  font-size: 14px;
+}
