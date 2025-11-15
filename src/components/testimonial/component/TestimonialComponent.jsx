@@ -2,12 +2,15 @@ import Slider from "react-slick";
 import { FaStar, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../styles/componentsStyles.css";
-import SectionTitle from "./shared/sectionTitle/SectionTitle";
+import '../../../styles/componentsStyles.css'
+import SectionTitle from "../../shared/sectionTitle/SectionTitle";
 
 function SampleNextArrow({ onClick }) {
   return (
-    <button className="arrow-btn next" onClick={onClick}>
+    <button
+      className="arrow-btn next bg-blue-600 text-white hover:bg-blue-700 p-2 rounded"
+      onClick={onClick}
+    >
       <FaArrowRight />
     </button>
   );
@@ -15,7 +18,10 @@ function SampleNextArrow({ onClick }) {
 
 function SamplePrevArrow({ onClick }) {
   return (
-    <button className="arrow-btn prev" onClick={onClick}>
+    <button
+      className="arrow-btn prev bg-blue-600 text-white hover:bg-blue-700 p-2 rounded"
+      onClick={onClick}
+    >
       <FaArrowLeft />
     </button>
   );
@@ -84,20 +90,28 @@ function TestimonialSlider() {
   ];
 
   return (
-    <div className="testimonial-section py-5 container text-center my-5 position-relative">
+    <div className="testimonial-section py-5 max-w-7xl mx-auto px-4 text-center my-5 relative">
       <SectionTitle title={"TESTIMONIAL"} sentence={"Our Clients Say!!!"} />
 
       <Slider {...settings}>
         {testimonials.map((t) => (
           <div key={t.id} className="testimonial-card px-3">
-            <div className="card-content p-4 rounded-4 mb-5 pb-5">
+            <div className="card-content p-4 rounded-2xl mb-12 pb-12 bg-white shadow">
               <p>{t.text}</p>
-              <img src={t.img} alt={t.name} className="client-img p-1" />
+              <img
+                src={t.img}
+                alt={t.name}
+                className="client-img p-1 rounded-full mx-auto w-20 h-20 object-cover mt-4"
+              />
             </div>
-            <h5 className="">{t.name}</h5>
-            <p className="text-muted mb-0">{t.location}</p>
-            <div className="stars text-primary fs-5">
-              <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+            <h5 className="font-bold">{t.name}</h5>
+            <p className="text-gray-500 mb-0">{t.location}</p>
+            <div className="stars text-blue-600 text-lg flex justify-center gap-1 mt-2">
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
             </div>
           </div>
         ))}

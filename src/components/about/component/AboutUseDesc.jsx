@@ -1,8 +1,7 @@
-import aboutImg from "../assets/aboutImg.jpg";
-import "../styles/componentsStyles.css";
+import aboutImg from "../../../assets/aboutimg.jpg";
+import '../../../styles/componentsStyles.css'
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import HeadSection from "./shared/headSection/HeadSection";
 function AboutUsDesc() {
     return ( 
         <>

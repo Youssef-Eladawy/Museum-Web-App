@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import "../styles/componentsStyles.css";
+import '../../../styles/componentsStyles.css'
+import TestimonialComponent from '../component/TestimonialComponent.jsx';
 
-import TestimonialComponent from '../components/TestimonialComponent.jsx';
-import HeadSection from '../components/shared/headSection/HeadSection.jsx';
+import HeadSection from '../../shared/headSection/HeadSection';
 function Testimonial() {
     const scrollRef = useRef(null);
 

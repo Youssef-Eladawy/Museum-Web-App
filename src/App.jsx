@@ -5,10 +5,12 @@ import { Routes, Route } from "react-router-dom";
 // import "@popperjs/core/dist/umd/popper.min.js";
 // import "bootstrap-icons/font/bootstrap-icons.css";
 
-import Testimonial from "./pages/Testimonial";
-import AboutUs from "./pages/AboutUs";
-import OurServices from "./pages/OurServices";
-import Guides from "./pages/Guides";
+import Testimonial from "./components/testimonial/page/Testimonial";
+import AboutUs from "./components/about/page/AboutUs";
+import OurServices from "./components/services/page/OurServices";
+import Guides from "./components/travelGuides/page/Guides";
+
+
 import Gallery from "./pages/Gallery";
 import Destination from "./pages/Destination";
 import Contact from "./pages/Contact";
