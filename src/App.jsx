@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "@popperjs/core/dist/umd/popper.min.js";
-import "bootstrap-icons/font/bootstrap-icons.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.min.js";
+// import "@popperjs/core/dist/umd/popper.min.js";
+// import "bootstrap-icons/font/bootstrap-icons.css";
 
 import Testimonial from "./pages/Testimonial";
 import AboutUs from "./pages/AboutUs";
