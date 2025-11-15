@@ -1,4 +1,5 @@
-import aboutImg from "../../../assets/aboutimg.jpg";
+// import aboutImg from "../../../assets/aboutimg.jpg";
+import aboutImg from "../../../assets/aboutImg.jpg";
 import '../../../styles/componentsStyles.css'
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
