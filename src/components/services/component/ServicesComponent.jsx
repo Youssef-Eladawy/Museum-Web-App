@@ -2,8 +2,8 @@ import { FaGlobe } from "react-icons/fa";
 import { MdMuseum } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
-import "../styles/componentsStyles.css";
-import SectionTitle from "./shared/sectionTitle/SectionTitle";
+import '../../../styles/componentsStyles.css'
+import SectionTitle from "../../shared/sectionTitle/SectionTitle";
 function ServicesComponent() {
     return ( 
         <section className="OurServicesSection container">

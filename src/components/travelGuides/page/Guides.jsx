@@ -1,5 +1,5 @@
-import HeadSection from "../components/shared/headSection/HeadSection";
-import TravelGuide from "../components/TravelGuide";
+import HeadSection from '../../shared/headSection/HeadSection';
+import TravelGuide from "../component/TravelGuide";
 
 function Guides() {
     return ( 
