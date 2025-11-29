@@ -26,6 +26,7 @@ import GuidesPage from "./pages/Guides";
 import AboutUs from "./pages/AboutUs";
 import GalleryPage from "./pages/Gallery";
 import OurServicesPage from "./pages/OurServices";
+import ManageTours from "./featuers/tours/ManageTours";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -95,7 +96,7 @@ function App() {
             }
           >
             <Route path="bookings" element={<ManageBookings />} />
-            <Route path="tours" element={<h2>tours</h2>} />
+            <Route path="tours" element={<ManageTours />} />
             <Route path="users" element={<Users />} />
           </Route>
 
