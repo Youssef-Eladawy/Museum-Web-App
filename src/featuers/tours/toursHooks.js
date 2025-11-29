@@ -1,6 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { getHomeTours, getTour, getTours } from "../../services/apiTours";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  getHomeTours,
+  getTour,
+  getTours,
+  createTour,
+  updateTour,
+  deleteTour,
+} from "../../services/apiTours";
 import { useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function useFetchHomeTours() {
   const {
@@ -52,4 +60,61 @@ export function useGetTours() {
   });
 
   return { tours, count, isLoading, error };
+}
+
+export function useCreateTour() {
+  const queryClient = useQueryClient();
+
+  const { mutate: create, isPending } = useMutation({
+    mutationFn: createTour,
+    onSuccess: () => {
+      toast.success("Tour created successfully!");
+      queryClient.invalidateQueries({ queryKey: ["tours"] });
+      queryClient.invalidateQueries({ queryKey: ["home-tours"] });
+      queryClient.invalidateQueries({ queryKey: ["all-tours"] });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to create tour");
+    },
+  });
+
+  return { create, isPending };
+}
+
+export function useUpdateTour() {
+  const queryClient = useQueryClient();
+
+  const { mutate: update, isPending } = useMutation({
+    mutationFn: ({ id, tourData }) => updateTour(id, tourData),
+    onSuccess: () => {
+      toast.success("Tour updated successfully!");
+      queryClient.invalidateQueries({ queryKey: ["tours"] });
+      queryClient.invalidateQueries({ queryKey: ["home-tours"] });
+      queryClient.invalidateQueries({ queryKey: ["all-tours"] });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to update tour");
+    },
+  });
+
+  return { update, isPending };
+}
+
+export function useDeleteTour() {
+  const queryClient = useQueryClient();
+
+  const { mutate: remove, isPending } = useMutation({
+    mutationFn: deleteTour,
+    onSuccess: () => {
+      toast.success("Tour deleted successfully!");
+      queryClient.invalidateQueries({ queryKey: ["tours"] });
+      queryClient.invalidateQueries({ queryKey: ["home-tours"] });
+      queryClient.invalidateQueries({ queryKey: ["all-tours"] });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to delete tour");
+    },
+  });
+
+  return { remove, isPending };
 }

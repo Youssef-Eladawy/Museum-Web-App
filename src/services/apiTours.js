@@ -62,3 +62,43 @@ export async function getTours({ filter, sortBy, page }) {
 
   return { tours, count };
 }
+
+export async function createTour(tourData) {
+  const { data, error } = await supabase
+    .from("tours")
+    .insert([tourData])
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to create tour");
+  }
+
+  return data;
+}
+
+export async function updateTour(id, tourData) {
+  const { data, error } = await supabase
+    .from("tours")
+    .update(tourData)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to update tour");
+  }
+
+  return data;
+}
+
+export async function deleteTour(id) {
+  const { error } = await supabase.from("tours").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to delete tour");
+  }
+}
