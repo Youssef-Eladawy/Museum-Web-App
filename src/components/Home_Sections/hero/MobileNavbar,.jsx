@@ -81,7 +81,7 @@ const MobileNavbar = ({ isOpen, onClose }) => {
                       </Link>
                     )}
                     <Link
-                      to="/user/profile"
+                      to="/admin/tours"
                       onClick={handleLinkClick}
                       className="flex items-center gap-2 py-2 text-gray-700 hover:text-primary transition-colors">
                       <User className="w-4 h-4" />
