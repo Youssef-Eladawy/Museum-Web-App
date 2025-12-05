@@ -27,6 +27,7 @@ import AboutUs from "./pages/AboutUs";
 import GalleryPage from "./pages/Gallery";
 import OurServicesPage from "./pages/OurServices";
 import ManageTours from "./featuers/tours/ManageTours";
+import Blog from "./pages/Blog";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,6 +52,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
 
           <Route path="/tours" element={<Tours />} />
+
+          <Route path="/blog" element={<Blog/>} />
 
           <Route path="/unauthorized" element={<Unauthorized />} />
 

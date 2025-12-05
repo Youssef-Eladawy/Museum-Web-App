@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaUser, FaCalendarAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaCalendarAlt, FaSignOutAlt, FaHome } from "react-icons/fa";
 import { useLogout, useSession } from "../featuers/auth/authHooks";
 import { Loader2 } from "lucide-react";
 
@@ -28,6 +28,16 @@ export default function UserSidebar({ sidebarOpen, setSidebarOpen }) {
         {/* Navigation */}
         <nav className="flex-1 p-4 overflow-y-auto">
           <ul className="space-y-2">
+            <li>
+              <NavLink
+                to="/"
+                onClick={() => setSidebarOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-700 hover:bg-gray-100"
+              >
+                <FaHome className="text-lg" />
+                <span className="font-medium">Home</span>
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 to="profile"
