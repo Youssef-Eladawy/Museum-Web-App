@@ -62,7 +62,7 @@ const Popbar = () => {
                 </li>
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                   {
-                    user.role === "ADMIN" ? 
+                    user.role === "ADMIN" && 
                     <Link
                       to="/admin/tours"
                       className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 first:rounded-t-lg"
@@ -70,7 +70,6 @@ const Popbar = () => {
                       <FaToolbox className="w-4 h-4" />
                       Admin
                     </Link>
-                    : ""
                   }
                   <Link
                     to="/user/profile"
