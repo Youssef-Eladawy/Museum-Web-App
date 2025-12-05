@@ -105,14 +105,15 @@ export function useDeleteTour() {
 
   const { mutate: remove, isPending } = useMutation({
     mutationFn: deleteTour,
+    // Temporarily disable optimistic update to isolate refetch behavior
+    onError: (error) => {
+      toast.error(error?.message || "Failed to delete tour");
+    },
     onSuccess: () => {
       toast.success("Tour deleted successfully!");
       queryClient.invalidateQueries({ queryKey: ["tours"] });
       queryClient.invalidateQueries({ queryKey: ["home-tours"] });
       queryClient.invalidateQueries({ queryKey: ["all-tours"] });
-    },
-    onError: (error) => {
-      toast.error(error.message || "Failed to delete tour");
     },
   });
 

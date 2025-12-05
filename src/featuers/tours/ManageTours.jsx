@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCreateTour, useUpdateTour, useDeleteTour } from "./toursHooks";
@@ -20,13 +20,21 @@ export default function ManageTours() {
   const [expandedRow, setExpandedRow] = useState(null);
   const queryClient = useQueryClient();
 
+  // Expose queryClient to window for debugging (temporary)
+  window.queryClient = queryClient;
+
   // Fetch all tours
   const {
     data: toursData = { tours: [], count: 0 },
     isLoading: isLoadingTours,
   } = useQuery({
     queryKey: ["all-tours"],
-    queryFn: () => getTours({ filter: null, sortBy: null, page: 1 }),
+    // fetch newest tours first so recently added items appear on first page
+    queryFn: () =>
+      getTours({
+        filter: null,
+        sortBy: { field: "created_at", direction: "desc" },
+      }),
   });
 
   // Mutations
@@ -137,6 +145,7 @@ export default function ManageTours() {
   // Handle delete
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this tour?")) {
+      // let the mutation's optimistic update handle UI removal and rollback
       remove(id);
     }
   };
@@ -169,7 +178,7 @@ export default function ManageTours() {
         </button>
       </div>
 
-      {/* Tours Table */}
+      {/* Tours Table - Responsive */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
         {isLoadingTours ? (
           <div className="flex justify-center items-center py-12">
@@ -182,41 +191,20 @@ export default function ManageTours() {
             </p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b">
-                <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Title
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Location
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Price
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Seats
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                {toursData.tours?.map((tour) => (
-                  <tr
-                    key={tour.id}
-                    className="hover:bg-gray-50 transition-colors"
-                  >
-                    <td className="px-6 py-4 text-sm text-gray-900">
+          <React.Fragment>
+            {/* Mobile View - Card Layout */}
+            <div className="md:hidden p-4">
+              {toursData.tours?.map((tour) => (
+                <div key={tour.id} className="bg-white border border-gray-200 rounded-lg mb-4 shadow-sm">
+                  <div className="p-4">
+                    <div className="flex justify-between items-start mb-3">
                       <button
                         onClick={() =>
                           setExpandedRow(
                             expandedRow === tour.id ? null : tour.id
                           )
                         }
-                        className="flex items-center gap-2 font-medium hover:text-blue-600"
+                        className="flex items-center gap-2 font-medium text-gray-900 hover:text-blue-600 flex-1 text-left"
                       >
                         {expandedRow === tour.id ? (
                           <ChevronUp size={16} />
@@ -225,115 +213,229 @@ export default function ManageTours() {
                         )}
                         {tour.title}
                       </button>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {tour.location}
-                    </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">
-                      ${tour.price}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {tour.availableSeats}
-                    </td>
-                    <td className="px-6 py-4 text-sm">
-                      <div className="flex gap-2">
+                      <div className="flex gap-1 ml-2">
                         <button
                           onClick={() => handleEdit(tour)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                          className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
                           disabled={isUpdating}
                         >
-                          <Edit2 size={18} />
+                          <Edit2 size={16} />
                         </button>
                         <button
                           onClick={() => handleDelete(tour.id)}
-                          className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+                          className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
                           disabled={isDeleting}
                         >
-                          <Trash2 size={18} />
+                          <Trash2 size={16} />
                         </button>
                       </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {/* Expanded Row Details */}
-            {expandedRow && (
-              <div className="bg-gray-50 border-t p-6">
-                {toursData.tours?.find((tour) => tour.id === expandedRow) && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600">
-                        Description
-                      </p>
-                      <p className="text-gray-900 mt-1">
-                        {toursData.tours.find((tour) => tour.id === expandedRow)
-                          ?.description || "N/A"}
-                      </p>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600">
-                        Guide
-                      </p>
-                      <p className="text-gray-900 mt-1">
-                        {toursData.tours.find((tour) => tour.id === expandedRow)
-                          ?.guideName || "N/A"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600">
-                        Date
-                      </p>
-                      <p className="text-gray-900 mt-1">
-                        {toursData.tours.find((tour) => tour.id === expandedRow)
-                          ?.date || "N/A"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600">
-                        Duration
-                      </p>
-                      <p className="text-gray-900 mt-1">
-                        {toursData.tours.find((tour) => tour.id === expandedRow)
-                          ?.duration || "N/A"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600">
-                        Highlights
-                      </p>
-                      <ul className="text-gray-900 mt-1 list-disc list-inside">
-                        {toursData.tours
-                          .find((tour) => tour.id === expandedRow)
-                          ?.highlights?.map((highlight, idx) => (
-                            <li key={idx} className="text-sm">
-                              {highlight}
-                            </li>
-                          )) || <li className="text-sm">N/A</li>}
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600">
-                        What to Bring
-                      </p>
-                      <ul className="text-gray-900 mt-1 list-disc list-inside">
-                        {toursData.tours
-                          .find((tour) => tour.id === expandedRow)
-                          ?.broughts?.map((brought, idx) => (
-                            <li key={idx} className="text-sm">
-                              {brought}
-                            </li>
-                          )) || <li className="text-sm">N/A</li>}
-                      </ul>
+                    
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Location:</span>
+                        <span className="text-gray-900 font-medium">{tour.location}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Price:</span>
+                        <span className="text-gray-900 font-semibold">${tour.price}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-500">Available Seats:</span>
+                        <span className="text-gray-900">{tour.availableSeats}</span>
+                      </div>
                     </div>
                   </div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+                  
+                  {/* Expanded Details - Mobile */}
+                  {expandedRow === tour.id && (
+                    <div className="bg-gray-50 border-t p-4">
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Description</p>
+                          <p className="text-gray-900 text-sm">{tour.description || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Guide</p>
+                          <p className="text-gray-900 text-sm">{tour.guideName || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Date</p>
+                          <p className="text-gray-900 text-sm">{tour.date || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Duration</p>
+                          <p className="text-gray-900 text-sm">{tour.duration || "N/A"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Highlights</p>
+                          <ul className="text-gray-900 text-sm list-disc list-inside">
+                            {tour.highlights?.map((highlight, idx) => (
+                              <li key={idx}>{highlight}</li>
+                            )) || <li>N/A</li>}
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">What to Bring</p>
+                          <ul className="text-gray-900 text-sm list-disc list-inside">
+                            {tour.broughts?.map((brought, idx) => (
+                              <li key={idx}>{brought}</li>
+                            )) || <li>N/A</li>}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop View - Table Layout */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                      Title
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                      Location
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                      Price
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                      Seats
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {toursData.tours?.map((tour) => (
+                    <React.Fragment key={tour.id}>
+                      <tr className="hover:bg-gray-50 transition-colors">
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          <button
+                            onClick={() =>
+                              setExpandedRow(
+                                expandedRow === tour.id ? null : tour.id
+                              )
+                            }
+                            className="flex items-center gap-2 font-medium hover:text-blue-600"
+                          >
+                            {expandedRow === tour.id ? (
+                              <ChevronUp size={16} />
+                            ) : (
+                              <ChevronDown size={16} />
+                            )}
+                            {tour.title}
+                          </button>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {tour.location}
+                        </td>
+                        <td className="px-6 py-4 text-sm font-semibold text-gray-900">
+                          ${tour.price}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {tour.availableSeats}
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleEdit(tour)}
+                              className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                              disabled={isUpdating}
+                            >
+                              <Edit2 size={18} />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(tour.id)}
+                              className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+                              disabled={isDeleting}
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                      {/* Expanded Details - Desktop */}
+                      {expandedRow === tour.id && (
+                        <tr>
+                          <td colSpan="5" className="px-6 py-0">
+                            <div className="bg-gray-50 border-t">
+                              <div className="p-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-600 mb-1">
+                                      Description
+                                    </p>
+                                    <p className="text-gray-900 text-sm">
+                                      {tour.description || "N/A"}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-600 mb-1">
+                                      Guide
+                                    </p>
+                                    <p className="text-gray-900 text-sm">
+                                      {tour.guideName || "N/A"}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-600 mb-1">
+                                      Date
+                                    </p>
+                                    <p className="text-gray-900 text-sm">
+                                      {tour.date || "N/A"}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-600 mb-1">
+                                      Duration
+                                    </p>
+                                    <p className="text-gray-900 text-sm">
+                                      {tour.duration || "N/A"}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-600 mb-1">
+                                      Highlights
+                                    </p>
+                                    <ul className="text-gray-900 text-sm list-disc list-inside">
+                                      {tour.highlights?.map((highlight, idx) => (
+                                        <li key={idx}>{highlight}</li>
+                                      )) || <li>N/A</li>}
+                                    </ul>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-600 mb-1">
+                                      What to Bring
+                                    </p>
+                                    <ul className="text-gray-900 text-sm list-disc list-inside">
+                                      {tour.broughts?.map((brought, idx) => (
+                                        <li key={idx}>{brought}</li>
+                                      )) || <li>N/A</li>}
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            </React.Fragment>
+          )}
+        </div>
 
       {/* Modal */}
       {isModalOpen && (
