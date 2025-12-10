@@ -1,0 +1,111 @@
+/* Header background and shadow */
+.header-bg {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+/* Brand styling */
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0d6efd;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.navbar-brand:hover {
+  color: #0a58ca;
+  text-decoration: none;
+}
+
+/* Navbar links */
+.nav-link {
+  color: #0d6efd !important;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  color: #0a58ca !important;
+  background-color: rgba(13, 110, 253, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Active link */
+.nav-link.active {
+  font-weight: 600;
+  color: #0a58ca !important;
+}
+
+/* Primary button styling */
+.btn-primary {
+  background-color: #0d6efd !important;
+  border: none;
+  border-radius: 25px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* Responsive spacing for nav items */
+.navbar-nav {
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Navbar toggle button styling */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Optional: smoother collapse animation */
+.collapse.navbar-collapse {
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Login button */
+.btn-outline-primary {
+  color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 25px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* Sign Up button (already styled as btn-primary, but ensure round and lift) */
+.btn-primary {
+  border-radius: 25px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}

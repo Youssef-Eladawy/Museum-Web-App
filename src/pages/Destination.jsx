@@ -1,13 +1,13 @@
-import DestinationSection from "../components/Home_Sections/destination/Destination";
 import HeadSection from "../components/shared/headSection/HeadSection";
+import DestinationSection from "../components/destination/DestinationSection";
 
-function DestinationPage() {
-  return (
-    <>
-      <HeadSection title="Destination" />
-      <DestinationSection />
-    </>
-  );
+function Destination() {
+    return (
+        <>
+            <HeadSection title={"Travel Destination"} path={"Destination"} />
+            <DestinationSection />
+        </>
+    );
 }
 
-export default DestinationPage;
+export default Destination;

@@ -1,150 +1,47 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "react-hot-toast";
-import Home from "./pages/Home";
-import Tour from "./pages/Tour";
-import ConfirmBookingPage from "./pages/ConfirmBookingPage";
-import ProtectedRoute from "../ProtectedRoute";
-import Login from "./pages/Login";
-import UserLayout from "./components/UserLayout";
-import Profile from "./pages/user/Profile";
-import Bookings from "./pages/user/Bookings";
-import SignUp from "./pages/SignUp";
-import AdminRoute from "../ProtectedAdminRoute";
-import AdminLayout from "./components/AdminLayout";
-import Unauthorized from "./pages/unauthorized";
-import Tours from "./pages/Tours";
-import Users from "./pages/admin/Users";
-import ManageBookings from "./pages/admin/Bookings";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.min.js";
+// import "@popperjs/core/dist/umd/popper.min.js";
+// import "bootstrap-icons/font/bootstrap-icons.css";
+
+import Testimonial from "./components/testimonial/page/Testimonial";
+import AboutUs from "./components/about/page/AboutUs";
+import OurServices from "./components/services/page/OurServices";
+import Guides from "./components/travelGuides/page/Guides";
+
+
+import Gallery from "./pages/Gallery";
+import Destination from "./pages/Destination";
 import Contact from "./pages/Contact";
-import Subscribe from "./components/Home_Sections/Subscribe";
-import Footer from "./components/Home_Sections/Footer";
-import DestinationPage from "./pages/Destination";
-import TestomonialPage from "./pages/Testomonial";
-import GuidesPage from "./pages/Guides";
-import AboutUs from "./pages/AboutUs";
-import GalleryPage from "./pages/Gallery";
-import OurServicesPage from "./pages/OurServices";
-import ManageTours from "./featuers/tours/ManageTours";
-import Blog from "./pages/Blog";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 0,
-    },
-  },
-});
+import Home from "./pages/Home";
+import Subscription from "./components/Subscription";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import PageNotFound from "./pages/404Page";
+import Travels from "./pages/Travels";
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
+    <>
+      <Header />
 
-          <Route path="/tours/:tourId" element={<Tour />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/travels" element={<Travels />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/destination" element={<Destination />} />
+        <Route path="/testimonial" element={<Testimonial />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/services" element={<OurServices />} />
+        <Route path="/guides" element={<Guides />} />
+        <Route path="/gallery" element={<Gallery />} />
 
-          <Route path="/login" element={<Login />} />
-
-          <Route path="/signup" element={<SignUp />} />
-
-          <Route path="/tours" element={<Tours />} />
-
-          <Route path="/blog" element={<Blog/>} />
-
-          <Route path="/unauthorized" element={<Unauthorized />} />
-
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/destination" element={<DestinationPage />} />
-          <Route path="/testimonial" element={<TestomonialPage />} />
-
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/services" element={<OurServicesPage />} />
-          <Route path="/guides" element={<GuidesPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-
-          {/* Protected Confirming */}
-          <Route
-            path="/confirmBooking/:tourId"
-            element={
-              <ProtectedRoute>
-                <ConfirmBookingPage />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected User Routes */}
-          <Route
-            path="user"
-            element={
-              <ProtectedRoute>
-                <UserLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="profile" element={<Profile />} />
-            <Route path="bookings" element={<Bookings />} />
-          </Route>
-
-          {/* Protected Admin Routes */}
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminLayout />
-              </AdminRoute>
-            }
-          >
-            <Route path="bookings" element={<ManageBookings />} />
-            <Route path="tours" element={<ManageTours />} />
-            <Route path="users" element={<Users />} />
-          </Route>
-
-          {/* <Route path="/tours" element={<Tours />} />
-            
-            
-            <Route path="*" element={<PageNotFound />} /> */}
-        </Routes>
-        <Subscribe />
-        <Footer />
-      </BrowserRouter>
-
-      <Toaster
-        position="bottom-right"
-        gutter={16}
-        containerStyle={{ margin: "12px" }}
-        toastOptions={{
-          success: {
-            duration: 4000,
-            style: {
-              fontSize: "15px",
-              maxWidth: "420px",
-              padding: "14px 22px",
-              backgroundColor: "var(--color-light)",
-              color: "var(--color-primary)",
-            },
-          },
-          error: {
-            duration: 6000,
-            style: {
-              fontSize: "15px",
-              maxWidth: "420px",
-              padding: "14px 22px",
-              backgroundColor: "var(--color-primary)",
-              color: "var(--color-light)",
-            },
-          },
-          style: {
-            fontFamily: "'Roboto', sans-serif",
-            borderRadius: "8px",
-            boxShadow: "0 2px 15px rgba(0, 0, 0, 0.15)",
-          },
-        }}
-      />
-    </QueryClientProvider>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <Subscription />
+      <Footer />
+    </>
   );
 }
 

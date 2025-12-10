@@ -1,13 +1,15 @@
-import GallerySection from "../components/Home_Sections/gallery/Gallery";
 import HeadSection from "../components/shared/headSection/HeadSection";
+import GallerySection from "../components/gallery/GallerySection";
 
-function GalleryPage() {
-  return (
-    <>
-      <HeadSection title={"Gallery"} />
-      <GallerySection />
-    </>
-  );
+function Gallery() {
+    
+
+    return (
+        <>
+            <HeadSection title={"Our Gallery"} path={"gallery"} />
+            <GallerySection/>
+        </>
+    );
 }
 
-export default GalleryPage;
+export default Gallery;

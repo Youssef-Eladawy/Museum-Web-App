@@ -1,0 +1,53 @@
+.travelsBelt {
+    button {
+        width: auto;
+        border: none;
+        border: 1px solid var(--main-color);
+    }
+    button.active {
+        background-color: var(--main-color);
+        color: white;
+        transition: 0.2s;
+    }
+}
+.TravelsPhoto {
+    .image{
+        .imgDesc{
+            color: white;
+            top:calc(100% - 3.5rem);
+            left: 50%;
+            transform: translate(-50%,0);
+            z-index: 5;
+            transition: 0.5s;
+        }
+
+        .img-cont img{
+            transition: 0.2s;
+        }
+
+        .img-cont:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 4;
+            transition: 0.2s;
+        }
+        .img-cont:hover:after{
+            background-color: rgba(19, 53, 123, .6);
+        }
+        .img-cont:hover{
+            img{
+                scale: 1.2;
+            }
+            .imgDesc{
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+        }
+    }
+}

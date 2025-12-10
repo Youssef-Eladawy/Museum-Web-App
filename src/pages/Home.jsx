@@ -1,27 +1,22 @@
-import Destination from "../components/Home_Sections/destination/Destination";
-import GallerySection from "../components/Home_Sections/gallery/Gallery";
-import AboutSection from "../components/Home_Sections/AboutSection";
-import BlogSection from "../components/Home_Sections/BlogSection";
-import HeaderSection from "../components/Home_Sections/hero";
-import Services from "../components/Home_Sections/ServicesSection";
-import Tours from "../featuers/tours/ToursHome";
-import Testimonial from "../components/Home_Sections/testmonial/Testomonial";
-import TravelGuide from "../components/Home_Sections/GuidesSection";
-import TravelSection from "../components/Home_Sections/TravelSection";
+import AboutUsDesc from "../components/about/component/AboutUseDesc";
+import OurServices from "../components/services/page/OurServices";
+import DestinationSection from "../components/destination/DestinationSection";
+import TravelGuide from "../components/travelGuides/component/TravelGuide";
+import GallerySection from "../components/gallery/GallerySection";
+import React from "react";
+import HomeHero from "../components/Hero";
+import TravelSection from "../components/typeOfTravels/TravelSection";
 
 function Home() {
   return (
     <>
-      <HeaderSection />
-      <AboutSection />
-      <Services />
-      <Tours />
-      <Destination />
-      <BlogSection />
+      <HomeHero />
+      <AboutUsDesc />
+      <OurServices />
+      <DestinationSection />
+      <TravelSection />
       <TravelGuide />
       <GallerySection />
-      <TravelSection />
-      <Testimonial />
     </>
   );
 }
