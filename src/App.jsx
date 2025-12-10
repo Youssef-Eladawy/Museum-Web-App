@@ -28,6 +28,7 @@ import GalleryPage from "./pages/Gallery";
 import OurServicesPage from "./pages/OurServices";
 import ManageTours from "./featuers/tours/ManageTours";
 import Blog from "./pages/Blog";
+import ErrorPage from "./pages/ErrorPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,6 +66,7 @@ function App() {
           <Route path="/services" element={<OurServicesPage />} />
           <Route path="/guides" element={<GuidesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="*" element={<ErrorPage />} />
 
           {/* Protected Confirming */}
           <Route
