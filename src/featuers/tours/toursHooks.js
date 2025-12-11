@@ -105,11 +105,41 @@ export function useDeleteTour() {
 
   const { mutate: remove, isPending } = useMutation({
     mutationFn: deleteTour,
-    // Temporarily disable optimistic update to isolate refetch behavior
-    onError: (error) => {
+    // Optimistic update across all `tours` queries (different pages)
+    onMutate: async (id) => {
+      await queryClient.cancelQueries({ queryKey: ["tours"] });
+
+      // snapshot all `tours` queries
+      const previous = queryClient.getQueriesData(["tours"]);
+
+      // remove the tour from every cached `tours` query result
+      previous.forEach(([key, old]) => {
+        if (!old) return;
+        queryClient.setQueryData(key, (curr) => {
+          if (!curr || !curr.tours) return curr;
+          return {
+            ...curr,
+            tours: curr.tours.filter((t) => t.id !== id),
+            count:
+              typeof curr.count === "number"
+                ? Math.max(0, curr.count - 1)
+                : curr.count,
+          };
+        });
+      });
+
+      return { previous };
+    },
+    onError: (error, id, context) => {
+      // rollback all previous queries
+      if (context?.previous) {
+        context.previous.forEach(([key, old]) => {
+          queryClient.setQueryData(key, old);
+        });
+      }
       toast.error(error?.message || "Failed to delete tour");
     },
-    onSuccess: () => {
+    onSettled: () => {
       toast.success("Tour deleted successfully!");
       queryClient.invalidateQueries({ queryKey: ["tours"] });
       queryClient.invalidateQueries({ queryKey: ["home-tours"] });
