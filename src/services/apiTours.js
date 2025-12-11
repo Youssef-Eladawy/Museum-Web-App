@@ -1,9 +1,6 @@
 import { RES_PER_PAGE } from "../../constants";
 import supabase from "./supabase";
 
-// Expose supabase to window for debugging (temporary)
-window.supabase = supabase;
-
 export async function getHomeTours() {
   const { data: tours, error } = await supabase
     .from("tours")
@@ -33,22 +30,17 @@ export async function getTour(id) {
 export async function getTours({ filter, sortBy, page }) {
   let query = supabase.from("tours").select("*", { count: "exact" });
 
-  console.log(filter);
-
-  // Filter
   if (filter && filter.value !== "all") {
     const booleanValue = filter.value === "true";
     query = query.eq(filter.field, booleanValue);
   }
 
-  // Sorting
   if (sortBy) {
     query = query.order(sortBy.field, {
       ascending: sortBy.direction === "asc",
     });
   }
 
-  // Pagination
   if (page) {
     const pageNum = Number(page) || 1;
     const from = (pageNum - 1) * RES_PER_PAGE;
@@ -99,7 +91,6 @@ export async function updateTour(id, tourData) {
 
 export async function deleteTour(id) {
   try {
-    // Step 1: Validate tour ID
     if (!id) {
       throw new Error("Tour ID is required");
     }
@@ -109,7 +100,6 @@ export async function deleteTour(id) {
       throw new Error("Invalid tour ID format");
     }
 
-    // Step 2: Fetch the tour to verify it exists
     const { data: tours, error: fetchError } = await supabase
       .from("tours")
       .select("id")
@@ -124,7 +114,6 @@ export async function deleteTour(id) {
       throw new Error("Tour not found");
     }
 
-    // Step 3: Delete related bookings first
     const { error: deleteBookingsError } = await supabase
       .from("bookings")
       .delete()
@@ -132,10 +121,11 @@ export async function deleteTour(id) {
 
     if (deleteBookingsError) {
       console.error("Error deleting related bookings:", deleteBookingsError);
-      throw new Error("Could not delete tour: failed to remove related bookings");
+      throw new Error(
+        "Could not delete tour: failed to remove related bookings"
+      );
     }
 
-    // Step 4: Now delete the tour
     const { error: deleteError } = await supabase
       .from("tours")
       .delete()
@@ -157,15 +147,4 @@ export async function deleteTour(id) {
   }
 }
 
-// Expose a test function to the window for manual console testing
-window.testDeleteTour = async (id) => {
-  console.log(`Manual delete test for id: ${id}`);
-  try {
-    const result = await deleteTour(id);
-    console.log("Manual delete success:", result);
-    return result;
-  } catch (error) {
-    console.error("Manual delete error:", error);
-    throw error;
-  }
-};
+
