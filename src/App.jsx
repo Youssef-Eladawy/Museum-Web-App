@@ -66,6 +66,7 @@ function App() {
           <Route path="/services" element={<OurServicesPage />} />
           <Route path="/guides" element={<GuidesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          
           <Route path="*" element={<ErrorPage />} />
 
           {/* Protected Confirming */}
