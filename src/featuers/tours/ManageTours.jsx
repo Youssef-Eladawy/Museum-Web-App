@@ -13,13 +13,11 @@ export default function ManageTours() {
   const [expandedRow, setExpandedRow] = useState(null);
   const queryClient = useQueryClient();
 
-  // Expose queryClient to window for debugging (temporary)
-  // window.queryClient = queryClient;
 
-  // pagination state
+ 
   const [page, setPage] = useState(1);
 
-  // Fetch tours (server-side pagination)
+
   const {
     data: toursData = { tours: [], count: 0 },
     isLoading: isLoadingTours,
@@ -34,12 +32,12 @@ export default function ManageTours() {
     keepPreviousData: true,
   });
 
-  // Mutations
+
   const { create, isPending: isCreating } = useCreateTour();
   const { update, isPending: isUpdating } = useUpdateTour();
   const { remove, isPending: isDeleting } = useDeleteTour();
 
-  // Form setup
+
   const {
     register,
     control,
@@ -80,9 +78,9 @@ export default function ManageTours() {
     name: "highlights",
   });
 
-  // Handle form submission
+ 
   const onSubmit = (data) => {
-    // Clean up empty strings from arrays
+  
     const cleanData = {
       ...data,
       broughts: data.broughts
@@ -109,7 +107,7 @@ export default function ManageTours() {
     } else {
       create(cleanData, {
         onSuccess: () => {
-          // go back to first page so new item is visible
+        
           setPage(1);
           closeModal();
         },
@@ -117,14 +115,14 @@ export default function ManageTours() {
     }
   };
 
-  // If current page becomes empty after a delete, move to previous page
+
   useEffect(() => {
     if (toursData?.tours && toursData.tours.length === 0 && page > 1) {
       setPage((p) => Math.max(1, p - 1));
     }
   }, [toursData?.tours, page]);
 
-  // Handle edit
+
   const handleEdit = (tour) => {
     setEditingId(tour.id);
     reset({
@@ -147,15 +145,15 @@ export default function ManageTours() {
     setIsModalOpen(true);
   };
 
-  // Handle delete
+
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this tour?")) {
-      // let the mutation's optimistic update handle UI removal and rollback
+      
       remove(id);
     }
   };
 
-  // Close modal
+
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingId(null);
@@ -183,7 +181,7 @@ export default function ManageTours() {
         </button>
       </div>
 
-      {/* Tours Table - Responsive */}
+      {/* Tours Table*/}
       <div className="bg-white rounded-lg shadow overflow-hidden">
         {isLoadingTours ? (
           <div className="flex justify-center items-center py-12">
@@ -218,11 +216,11 @@ export default function ManageTours() {
         )}
       </div>
 
-      {/* Modal */}
+    
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            {/* Modal Header */}
+            
             <div className="sticky top-0 flex justify-between items-center p-6 border-b bg-white">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingId ? "Edit Tour" : "Create New Tour"}
@@ -235,9 +233,9 @@ export default function ManageTours() {
               </button>
             </div>
 
-            {/* Modal Body */}
+           
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
-              {/* Basic Information */}
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -377,7 +375,7 @@ export default function ManageTours() {
                 />
               </div>
 
-              {/* What to Bring - FieldArray */}
+              
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-sm font-medium text-gray-700">
@@ -412,7 +410,7 @@ export default function ManageTours() {
                 ))}
               </div>
 
-              {/* Highlights - FieldArray */}
+              
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-sm font-medium text-gray-700">
@@ -447,7 +445,7 @@ export default function ManageTours() {
                 ))}
               </div>
 
-              {/* Modal Footer */}
+           
               <div className="flex gap-3 pt-4 border-t">
                 <button
                   type="button"
